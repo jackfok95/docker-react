@@ -7,3 +7,15 @@ before_install:
     
 script:
     - docker run -e CI=true myimage npm run test
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: "us-east-2"
+    app: "jackfok-docker"
+    env: "JackfokDocker-env"
+    bucket_name: "elasticbeanstalk-us-east-2-629694765167"
+    bucket_path: "jackfok-docker"
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
